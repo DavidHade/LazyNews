@@ -1,0 +1,26 @@
+﻿@model WebUI.Models.HeadlineViewModel
+
+@foreach (var item in Model.NewsHeadlines)
+{
+        <div class="col-md-12 " style="padding-bottom:10px;padding-top:10px">
+            <div class="article-container add-shadow">
+
+                @if (@item.TimeAdded.Value.DayOfYear == DateTime.Now.DayOfYear)
+                {
+                    <h4 class="danger"><span class="label label-danger">New</span> Today @item.TimeAdded.Value.ToShortTimeString()<div class="pull-right"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>@item.NewsSource.ToUpper()</div></h4>
+                }
+                else
+                {
+                    <h4>@item.TimeAdded.Value<div class="pull-right"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>@item.NewsSource.ToUpper()</div></h4>
+                }
+
+
+                <h3>@item.Headline</h3>
+               
+                <button class="anchorDetail btn btn-default" data-id="@item.id">Details</button>
+                @*<div>[id: @item.id]</div>*@
+
+            </div>
+        </div>
+}
+
