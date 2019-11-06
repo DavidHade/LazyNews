@@ -4,8 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Core;
-using Core.CoreModels;
 using WebUI.Models;
 
 namespace WebUI.Controllers
