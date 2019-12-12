@@ -140,8 +140,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\HeadlineViewModel.cs" />
-    <Compile Include="Models\ModalViewModel.cs" />
-    <Compile Include="Models\NewsModel.cs" />
     <Compile Include="NewsDB.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -154,8 +152,108 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Highlight\highlight.pack.js" />
+    <Content Include="Content\Highlight\styles\a11y-dark.css" />
+    <Content Include="Content\Highlight\styles\a11y-light.css" />
+    <Content Include="Content\Highlight\styles\agate.css" />
+    <Content Include="Content\Highlight\styles\an-old-hope.css" />
+    <Content Include="Content\Highlight\styles\androidstudio.css" />
+    <Content Include="Content\Highlight\styles\arduino-light.css" />
+    <Content Include="Content\Highlight\styles\arta.css" />
+    <Content Include="Content\Highlight\styles\ascetic.css" />
+    <Content Include="Content\Highlight\styles\atelier-cave-dark.css" />
+    <Content Include="Content\Highlight\styles\atelier-cave-light.css" />
+    <Content Include="Content\Highlight\styles\atelier-dune-dark.css" />
+    <Content Include="Content\Highlight\styles\atelier-dune-light.css" />
+    <Content Include="Content\Highlight\styles\atelier-estuary-dark.css" />
+    <Content Include="Content\Highlight\styles\atelier-estuary-light.css" />
+    <Content Include="Content\Highlight\styles\atelier-forest-dark.css" />
+    <Content Include="Content\Highlight\styles\atelier-forest-light.css" />
+    <Content Include="Content\Highlight\styles\atelier-heath-dark.css" />
+    <Content Include="Content\Highlight\styles\atelier-heath-light.css" />
+    <Content Include="Content\Highlight\styles\atelier-lakeside-dark.css" />
+    <Content Include="Content\Highlight\styles\atelier-lakeside-light.css" />
+    <Content Include="Content\Highlight\styles\atelier-plateau-dark.css" />
+    <Content Include="Content\Highlight\styles\atelier-plateau-light.css" />
+    <Content Include="Content\Highlight\styles\atelier-savanna-dark.css" />
+    <Content Include="Content\Highlight\styles\atelier-savanna-light.css" />
+    <Content Include="Content\Highlight\styles\atelier-seaside-dark.css" />
+    <Content Include="Content\Highlight\styles\atelier-seaside-light.css" />
+    <Content Include="Content\Highlight\styles\atelier-sulphurpool-dark.css" />
+    <Content Include="Content\Highlight\styles\atelier-sulphurpool-light.css" />
+    <Content Include="Content\Highlight\styles\atom-one-dark-reasonable.css" />
+    <Content Include="Content\Highlight\styles\atom-one-dark.css" />
+    <Content Include="Content\Highlight\styles\atom-one-light.css" />
+    <Content Include="Content\Highlight\styles\brown-paper.css" />
+    <Content Include="Content\Highlight\styles\brown-papersq.png" />
+    <Content Include="Content\Highlight\styles\codepen-embed.css" />
+    <Content Include="Content\Highlight\styles\color-brewer.css" />
+    <Content Include="Content\Highlight\styles\darcula.css" />
+    <Content Include="Content\Highlight\styles\dark.css" />
+    <Content Include="Content\Highlight\styles\darkula.css" />
+    <Content Include="Content\Highlight\styles\default.css" />
+    <Content Include="Content\Highlight\styles\docco.css" />
+    <Content Include="Content\Highlight\styles\dracula.css" />
+    <Content Include="Content\Highlight\styles\far.css" />
+    <Content Include="Content\Highlight\styles\foundation.css" />
+    <Content Include="Content\Highlight\styles\github-gist.css" />
+    <Content Include="Content\Highlight\styles\github.css" />
+    <Content Include="Content\Highlight\styles\gml.css" />
+    <Content Include="Content\Highlight\styles\googlecode.css" />
+    <Content Include="Content\Highlight\styles\grayscale.css" />
+    <Content Include="Content\Highlight\styles\gruvbox-dark.css" />
+    <Content Include="Content\Highlight\styles\gruvbox-light.css" />
+    <Content Include="Content\Highlight\styles\hopscotch.css" />
+    <Content Include="Content\Highlight\styles\hybrid.css" />
+    <Content Include="Content\Highlight\styles\idea.css" />
+    <Content Include="Content\Highlight\styles\ir-black.css" />
+    <Content Include="Content\Highlight\styles\isbl-editor-dark.css" />
+    <Content Include="Content\Highlight\styles\isbl-editor-light.css" />
+    <Content Include="Content\Highlight\styles\kimbie.dark.css" />
+    <Content Include="Content\Highlight\styles\kimbie.light.css" />
+    <Content Include="Content\Highlight\styles\lightfair.css" />
+    <Content Include="Content\Highlight\styles\magula.css" />
+    <Content Include="Content\Highlight\styles\mono-blue.css" />
+    <Content Include="Content\Highlight\styles\monokai-sublime.css" />
+    <Content Include="Content\Highlight\styles\monokai.css" />
+    <Content Include="Content\Highlight\styles\night-owl.css" />
+    <Content Include="Content\Highlight\styles\nord.css" />
+    <Content Include="Content\Highlight\styles\obsidian.css" />
+    <Content Include="Content\Highlight\styles\ocean.css" />
+    <Content Include="Content\Highlight\styles\paraiso-dark.css" />
+    <Content Include="Content\Highlight\styles\paraiso-light.css" />
+    <Content Include="Content\Highlight\styles\pojoaque.css" />
+    <Content Include="Content\Highlight\styles\pojoaque.jpg" />
+    <Content Include="Content\Highlight\styles\purebasic.css" />
+    <Content Include="Content\Highlight\styles\qtcreator_dark.css" />
+    <Content Include="Content\Highlight\styles\qtcreator_light.css" />
+    <Content Include="Content\Highlight\styles\railscasts.css" />
+    <Content Include="Content\Highlight\styles\rainbow.css" />
+    <Content Include="Content\Highlight\styles\routeros.css" />
+    <Content Include="Content\Highlight\styles\school-book.css" />
+    <Content Include="Content\Highlight\styles\school-book.png" />
+    <Content Include="Content\Highlight\styles\shades-of-purple.css" />
+    <Content Include="Content\Highlight\styles\solarized-dark.css" />
+    <Content Include="Content\Highlight\styles\solarized-light.css" />
+    <Content Include="Content\Highlight\styles\sunburst.css" />
+    <Content Include="Content\Highlight\styles\tomorrow-night-blue.css" />
+    <Content Include="Content\Highlight\styles\tomorrow-night-bright.css" />
+    <Content Include="Content\Highlight\styles\tomorrow-night-eighties.css" />
+    <Content Include="Content\Highlight\styles\tomorrow-night.css" />
+    <Content Include="Content\Highlight\styles\tomorrow.css" />
+    <Content Include="Content\Highlight\styles\vs.css" />
+    <Content Include="Content\Highlight\styles\vs2015.css" />
+    <Content Include="Content\Highlight\styles\xcode.css" />
+    <Content Include="Content\Highlight\styles\xt256.css" />
+    <Content Include="Content\Highlight\styles\zenburn.css" />
+    <Content Include="Content\img\1460883009a9c35b7c932c9e4abe38d4.gif" />
+    <Content Include="Content\img\favicon.ico" />
+    <Content Include="Content\img\favicon.png" />
+    <Content Include="Content\img\loading.gif" />
     <Content Include="Content\img\logo.png" />
-    <Content Include="Content\modal.css" />
+    <Content Include="Content\img\new-york-gif.gif" />
+    <Content Include="Content\img\logo-landscape-2421.jpg" />
+    <Content Include="Content\_modal.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -177,6 +275,7 @@
     <None Include="NewsDB.dbml.layout">
       <DependentUpon>NewsDB.dbml</DependentUpon>
     </None>
+    <None Include="Properties\PublishProfiles\LazyNews - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -187,6 +286,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.timeago.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -194,7 +294,11 @@
     <Content Include="Scripts\lazyLoading.js" />
     <Content Include="Scripts\modal.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Scripts\three.r92.min.js" />
+    <Content Include="Scripts\vanta.net.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -210,6 +314,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_ProjectData.cshtml" />
     <Content Include="Views\Shared\_ModalView.cshtml" />
+    <Content Include="Views\Shared\_ModalView2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

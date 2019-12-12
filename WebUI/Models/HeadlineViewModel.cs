@@ -7,7 +7,6 @@ namespace WebUI.Models
 {
     public class HeadlineViewModel
     {
-
         public IEnumerable<NewsEntry> NewsHeadlines { get; set; }        
     }
 }

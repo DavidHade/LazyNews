@@ -92,6 +92,8 @@ namespace WebUI
 		
 		private string _Article;
 		
+		private string _Imagepath;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -108,6 +110,8 @@ namespace WebUI
     partial void OnNewsSourceChanged();
     partial void OnArticleChanging(string value);
     partial void OnArticleChanged();
+    partial void OnImagepathChanging(string value);
+    partial void OnImagepathChanged();
     #endregion
 		
 		public NewsEntry()
@@ -231,6 +235,26 @@ namespace WebUI
 					this._Article = value;
 					this.SendPropertyChanged("Article");
 					this.OnArticleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Imagepath", DbType="NVarChar(MAX)")]
+		public string Imagepath
+		{
+			get
+			{
+				return this._Imagepath;
+			}
+			set
+			{
+				if ((this._Imagepath != value))
+				{
+					this.OnImagepathChanging(value);
+					this.SendPropertyChanging();
+					this._Imagepath = value;
+					this.SendPropertyChanged("Imagepath");
+					this.OnImagepathChanged();
 				}
 			}
 		}

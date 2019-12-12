@@ -1,5 +1,7 @@
-﻿var PostBackURL = "http://localhost:63902/Home/Details";
-function showmodal () {
+﻿var PostBackURL = "https://lazynews.azurewebsites.net/Home/Details";
+//var url = 
+//var PostBackURL = "http://localhost:63902/Home/Details";
+    function showmodal() {
     $(".anchorDetail").click(function () {
         //debugger;
         var $buttonClicked = $(this);
@@ -15,6 +17,8 @@ function showmodal () {
                 //debugger;
                 $('#ModalContent').html(data);
                 $('#Modal').modal(options);
+                //$('.modal').addClass('fade');
+                //$('.modal').addClass('modal.dialog');
                 $('#Modal').modal('show');
 
             },
@@ -26,7 +30,15 @@ function showmodal () {
     //$("#closebtn").on('click',function(){
     //    $('#myModal').modal('hide');
 
-    $("#closbtn").click(function () {
-        $('#Modal').modal('hide');
+    //$("#closbtn").click
+    //    (function () {
+    //        $('#Modal').modal('hide');
+    //    });
+
+    $(document).keydown(function (event) {
+        if (event.keyCode === 27) {
+            
+            $("#Modal").modal('hide');
+        }
     });
-};
+}

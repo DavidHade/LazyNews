@@ -5,8 +5,8 @@
 
 var scrollHandler = function ()
 {
-    if (isReachedScrollEnd == false &&
-        ($(document).height() - $(this).height() - 100 < $(this).scrollTop()))
+    if ((isReachedScrollEnd == false) &&
+        ($(document).height() - $(this).height() - 300 < $(this).scrollTop()))
     {
         loadProjectData(url);
     }
@@ -18,7 +18,7 @@ function loadProjectData(loadMoreRowsUrl) {
         inCallback = true;
         page++;
         //$("div#loading").show();
-        
+        //debugger
         $.ajax({
             type: 'GET',
             url: loadMoreRowsUrl,
@@ -28,14 +28,14 @@ function loadProjectData(loadMoreRowsUrl) {
                 if (articles != '') {
                     $(".row").append(articles);
                     showmodal();
-                    
+                    $("time.timeago").timeago();
                 }
                 else {
                     page = -1;
                 }
 
                 inCallback = false;
-                $("div#loading").hide();
+                //$("div#loading").hide();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert(errorThrown);

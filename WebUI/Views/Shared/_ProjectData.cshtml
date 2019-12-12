@@ -1,25 +1,57 @@
-﻿@model WebUI.Models.HeadlineViewModel
+﻿@model WebUI.Models.HeadlineViewModel 
+
 
 @foreach (var item in Model.NewsHeadlines)
 {
-        <div class="col-md-12 " style="padding-bottom:10px;padding-top:10px">
-            <div class="article-container add-shadow">
+        <div class="col-md-12">
+            <div class="article-container">
+                <div class="pull-right h6"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>@item.NewsSource.ToUpperInvariant()</div>
 
                 @if (@item.TimeAdded.Value.DayOfYear == DateTime.Now.DayOfYear)
                 {
-                    <h4 class="danger"><span class="label label-danger">New</span> Today @item.TimeAdded.Value.ToShortTimeString()<div class="pull-right"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>@item.NewsSource.ToUpper()</div></h4>
+                    <div class="h5">
+                        <span class="label label-danger">New</span><span> <time class="timeago" datetime="@item.TimeAdded.Value.ToLongDateString()  @item.TimeAdded.Value.ToLongTimeString()"> [time]</time></span>
+                    </div>
                 }
                 else
                 {
-                    <h4>@item.TimeAdded.Value<div class="pull-right"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>@item.NewsSource.ToUpper()</div></h4>
+                    <div class="h5">
+                        <time class="timeago" datetime="@item.TimeAdded.Value.ToLongDateString() @item.TimeAdded.Value.ToLongTimeString()">[time]</time>
+                    </div>
                 }
 
+                @if (item.Imagepath != null)
+                {
+                    <img src="@item.Imagepath" class="article-image pull-left" />
+                }
+                else
+                {
+                    if (item.NewsSource == "theguardian")
+                    {
+                        <img src="https://s3.amazonaws.com/the-citizen-web-assets-us/uploads/2018/03/07125704/theguardianlogo.jpg" class="article-image pull-left" />
+                    }
+                    if (item.NewsSource == "foxnews")
+                    {
+                        <img src="https://static.foxnews.com/static/orion/styles/img/fox-news/og/og-fox-news.png" class="article-image pull-left" />
+                    }
+                    if (item.NewsSource == "bbc")
+                    {
+                        <img src="https://m.files.bbci.co.uk/modules/bbc-morph-news-waf-page-meta/4.1.1/bbc_news_logo.png" class="article-image pull-left" />
+                    }
+                    if (item.NewsSource == "nytimes")
+                    {
+                        <img src="https://static01.nyt.com/newsgraphics/images/icons/defaultPromoCrop.png" class="article-image pull-left" />
+                    }
+                    if (item.NewsSource == "theverge")
+                    {
+                        <img src="https://blog.ourcrowd.com/wp-content/uploads/2016/03/The-Verge.png" class="article-image pull-left" />
+                    }
+                }
 
-                <h3>@item.Headline</h3>
-               
-                <button class="anchorDetail btn btn-default" data-id="@item.id">Details</button>
-                @*<div>[id: @item.id]</div>*@
-
+                <div class="headline-container">
+                    <h3><a class="anchorDetail headline-link" data-id="@item.id">@item.Headline</a></h3>
+                    <button class="anchorDetail btn btn-sm btn-default modal-btn" data-id="@item.id">Full article &raquo;</button>
+                </div>
             </div>
         </div>
 }

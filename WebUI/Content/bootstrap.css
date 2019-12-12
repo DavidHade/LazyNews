@@ -5020,6 +5020,7 @@ a.badge:focus {
 .list-group-item.active > .badge,
 .nav-pills > .active > a > .badge {
   color: #337ab7;
+  
   background-color: #fff;
 }
 .list-group-item > .badge {
@@ -5355,14 +5356,14 @@ a.thumbnail.active {
 .list-group-item.disabled:focus .list-group-item-text {
   color: #777777;
 }
-.list-group-item.active,
-.list-group-item.active:hover,
-.list-group-item.active:focus {
-  z-index: 2;
-  color: #fff;
-  background-color: #337ab7;
-  border-color: #337ab7;
-}
+    .list-group-item.active,
+    .list-group-item.active:hover,
+    .list-group-item.active:focus {
+        z-index: 2;
+        color: #fff;
+        background-color: #d9534f;
+        border-color: #d9534f;
+    }
 .list-group-item.active .list-group-item-heading,
 .list-group-item.active:hover .list-group-item-heading,
 .list-group-item.active:focus .list-group-item-heading,
@@ -5378,6 +5379,7 @@ a.thumbnail.active {
 .list-group-item.active:hover .list-group-item-text,
 .list-group-item.active:focus .list-group-item-text {
   color: #c7ddef;
+
 }
 a.list-group-item,
 button.list-group-item {
@@ -5394,6 +5396,7 @@ button.list-group-item:focus {
   color: #555;
   text-decoration: none;
   background-color: #f5f5f5;
+
 }
 button.list-group-item {
   width: 100%;
@@ -6007,8 +6010,8 @@ button.close {
   opacity: 0;
 }
 .modal-backdrop.in {
-  filter: alpha(opacity=50);
-  opacity: 0.5;
+  filter: alpha(opacity=70);
+  opacity: 0.7;
 }
 .modal-header {
   padding: 15px;
@@ -6065,6 +6068,7 @@ button.close {
     width: 900px;
   }
 }
+
 .tooltip {
   position: absolute;
   z-index: 1070;

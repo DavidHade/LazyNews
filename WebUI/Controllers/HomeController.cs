@@ -17,13 +17,12 @@ namespace WebUI.Controllers
             ViewBag.RecordsPerPage = RecordsPerPage;
         }
 
-       
         public ActionResult Index(string newsSource = null)
         {
             return RedirectToAction("ShowData");
         }
 
-        [Route("Articles")]
+        [Route("")]
         public ActionResult ShowData(int? pageNum, string newsSource=null)
         {
             pageNum = pageNum ?? 0;
@@ -46,11 +45,9 @@ namespace WebUI.Controllers
                     ViewBag.Projects = GetData(pageNum.Value, newsSource);
 
                     return View("Index");
-                }
-                
+                }   
             }
         }
-
 
         public HeadlineViewModel GetData(int pageNum, string newsSource=null)
         {
@@ -59,21 +56,18 @@ namespace WebUI.Controllers
             
             int from = (pageNum * RecordsPerPage);
 
-            List<NewsEntry> Obj = (from e in dc.NewsEntries select e).OrderByDescending(e => e.TimeAdded).ThenByDescending(e => e.TimeAdded).ToList().Skip(from).Take(10).ToList();
+            List<NewsEntry> Obj = (from e in dc.NewsEntries select e).OrderByDescending(e => e.TimeAdded).ThenByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
             if (newsSource != null)
             {
                 List<NewsEntry> catObj = (from x in dc.NewsEntries where x.NewsSource == newsSource select x).OrderByDescending(e => e.TimeAdded).ThenByDescending(e => e.TimeAdded).ToList().Skip(from).Take(10).ToList();
                 headlinesObj.NewsHeadlines = catObj;
                 return headlinesObj;
-
             }
             else
             {
                 headlinesObj.NewsHeadlines = Obj;
                 return headlinesObj;
-            }
-                
-            
+            }  
         }
 
         public ActionResult Details(int Id)
@@ -83,10 +77,13 @@ namespace WebUI.Controllers
 
             List<NewsEntry> dbEntry = (from e in dc.NewsEntries where e.id == Id select e).ToList();
             Obj.NewsHeadlines = dbEntry;
+            
+            
 
             return PartialView("_ModalView", Obj);
         }
 
+        //[Route("About")]
         public ActionResult About()
         {
             return View();

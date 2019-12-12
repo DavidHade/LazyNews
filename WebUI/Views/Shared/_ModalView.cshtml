@@ -2,28 +2,30 @@
 
 @foreach (var item in Model.NewsHeadlines)
 {
-    <div class="col-md-12" style="padding:0">
-        <div class="article-container add-shadow">
+    
+        <div class="article-container" style="border-radius:3px">
 
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><h1>×</h1></button>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
             <div class="modal-header">
-
                 @*<h4 style="color:darkred">[id: @item.id] @item.TimeAdded - @item.NewsSource</h4>*@
-                <h4>@item.Headline</h4>
+                <h4 class="modal-title">@item.Headline</h4>
             </div>
 
-            <p>@item.Article</p>
-            @if (@item.Article.Length < 1)
-            {
-                <div class="alert-warning alert" role="alert">
-                    Instant article not available, please visit the source
-                    <button class="close" data-dismiss="alert">x</button>
-                </div>
-            }
+            <div class="modal-body">
+                @Html.Raw(item.Article)
+                @if (@item.Article.Length < 1)
+                {
+                    <div class="alert-warning alert" role="alert">
+                        Instant article not available, please visit the source
+                        <button class="close" data-dismiss="alert">x</button>
+                    </div>
+                }
+            </div>
 
-            <p><a class="btn btn-default" href="@item.HeadlineUrl" target="_blank">Read source &raquo;</a></p>
-
-
+            <div class="modal-footer">
+                <a class="btn btn-success pull-left" href="@item.HeadlineUrl" target="_blank">Read source &raquo;</a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
         </div>
-    </div>
+    
 }

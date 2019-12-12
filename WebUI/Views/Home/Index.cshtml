@@ -5,39 +5,50 @@
 }
 
 <div class="jumbotron background-top">
-    <div class="text-center">
-        <h1 style="color:white;">Lazy News</h1>
-        <h2 style="color:white">The news outlet for <strike>lazy</strike> efficient people</h2>
-        <hr />
-        <h3 style="color:white">
+    @*<div class="top-image">
+
+        </div>*@
+    <i class="overlay"></i>
+    <div class="text-center" style="z-index:10;padding-top:30px;padding-bottom:30px;position:relative">
+        <div style="color:#fff;font-size:3.8rem;font-weight:800">Lazy News</div>
+        <div style="height:10px"></div>
+        <div style="color:white;font-size:2.5rem;font-weight:600">The news outlet for <strike>lazy</strike> efficient people</div>
+        <div style="color:white;font-size:2rem;font-weight:500">
             We search the internet for news, so you don't have to
-        </h3>
-        <div class="progress" style="margin:0">
-            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                60% Complete
-                <span class="sr-only">45% Complete</span>
-            </div>
+        </div>
+        @*<div class="progress" style="margin:0">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                    60% Complete
+                    <span class="sr-only">45% Complete</span>
+                </div>
+            </div>*@
+    </div>
+</div>
+
+<div class="filter-wrapper col-md-3">
+    <div class="filter-btn"><button type="button" href="#filterColumn" data-toggle="collapse" aria-expanded="true" class="btn btn-danger dropdown-toggle"><span class="glyphicon glyphicon-filter"></span></button><span class="h5"> Filter by source</span></div>
+    <div class="collapse filter-column" id="filterColumn">
+        <div class="list-group">
+            @Html.ActionLink("All", "ShowData", null, new { @class = Request["newsSource"] == null ? "list-group-item active" : "list-group-item" })
+            @Html.ActionLink("The Guardian", "ShowData", new { newsSource = "theguardian" }, new { @class = Request["newsSource"] == "theguardian" ? "list-group-item active" : "list-group-item" })
+            @Html.ActionLink("Fox News", "ShowData", new { newsSource = "foxnews" }, new { @class = Request["newsSource"] == "foxnews" ? "list-group-item active" : "list-group-item" })
+            @Html.ActionLink("Bbc", "ShowData", new { newsSource = "bbc" }, new { @class = Request["newsSource"] == "bbc" ? "list-group-item active" : "list-group-item" })
+            @Html.ActionLink("New York Times", "ShowData", new { newsSource = "nytimes" }, new { @class = Request["newsSource"] == "nytimes" ? "list-group-item active" : "list-group-item" })
+            @Html.ActionLink("The Verge", "ShowData", new { newsSource = "theverge" }, new { @class = Request["newsSource"] == "theverge" ? "list-group-item active" : "list-group-item" })
         </div>
     </div>
 </div>
 
-<div class="filter-column col-md-2">
-    <h4>Filter by News Source</h4>
-    <div class="list-group">
-        @Html.ActionLink("All", "ShowData", null, new { @class = Request["newsSource"] == null ? "list-group-item active" : "list-group-item" })
-        @Html.ActionLink("The Guardian", "ShowData", new { newsSource = "theguardian" }, new { @class = Request["newsSource"] == "theguardian" ? "list-group-item active" : "list-group-item" })
-        @Html.ActionLink("Fox News", "ShowData", new { newsSource = "foxnews" }, new { @class = Request["newsSource"] == "foxnews" ? "list-group-item active" : "list-group-item" })
-        @Html.ActionLink("Bbc", "ShowData", new { newsSource = "bbc" }, new { @class = Request["newsSource"] == "bbc" ? "list-group-item active" : "list-group-item" })
-        @Html.ActionLink("New York Times", "ShowData", new { newsSource = "nytimes" }, new { @class = Request["newsSource"] == "nytimes" ? "list-group-item active" : "list-group-item" })
-    </div>
-</div>
-
-<div class="row col-md-10">
+<div class="row col-md-9 articles-wrapper">
     @Html.Partial("_ProjectData", (ViewBag.Projects as WebUI.Models.HeadlineViewModel))
 
 </div>
 
-<div id='Modal' class='modal'>
+@*<div id="loading">
+        <img src="~/Content/img/loading.gif" />
+    </div>*@
+
+<div id="Modal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div id='ModalContent'></div>
@@ -49,17 +60,33 @@
 @section scripts{
     <script src="~/Scripts/lazyLoading.js"></script>
     <script src="~/Scripts/modal.js"></script>
+    <script src="~/Scripts/jquery.timeago.js"></script>
     <script type="text/javascript">
-
-        $(function () {
-            $("div#loading").hide();
-        });
-
         //var url = '@Url.RouteUrl("ProjectDataList")'.toString();
         //var url = "http://localhost:63902/Home/ShowData";
         var url = window.location.href;
         $(window).scroll(scrollHandler);
+        //$("div#loading").hide();
         showmodal();
+
     </script>
+    <script>
+        jQuery(document).ready(function () {
+
+            jQuery("time.timeago").timeago();
+        });
+    </script>
+
+    @*<script src="~/Scripts/three.r92.min.js"></script>
+        <script src="~/Scripts/vanta.net.min.js"></script>
+        <script>
+            VANTA.NET({
+                el: ".background-topd",
+                backgroundColor: 0xf0e10,
+                maxDistance: 20.00,
+                points: 19.00,
+                spacing: 12.00
+            });
+        </script>*@
 }
 

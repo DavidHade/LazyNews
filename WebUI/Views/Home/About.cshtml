@@ -1,7 +1,240 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<link href="~/Content/Highlight/styles/vs2015.css" rel="stylesheet" />
+
+<div class="about-container col-md-10 col-md-offset-1">
+
+    <h1 class="custom-turqoise"><strong><span class="glyphicon glyphicon-education"></span> The project...</strong></h1>
+    <p class="p-about">
+        Lazynews is a project that emerged after me being frustrated how bloated looking and slow my
+        frequented news websites looked, i have embarked on a mission to get all my news
+        in one place, from all the relevant sources - minus the bloat, click bait and fillers.
+        Lazy news is an autonomous news service that gathers news from the web and delivers it
+        in one place, stripped down of mostly everything but the content itself.
+        <div class="alert-danger alert" role="alert">
+                Beating the
+                paywalls and blocking the ads is not my intention so please visit the original article
+                if you'd like to support your favorite news website.
+                All credit goes to their respectful sources.
+        </div>
+    </p>
+
+    <div style="height:10px"></div>
+
+    <h1 class="custom-turqoise"><strong><span class="glyphicon glyphicon-flash"></span> The logic</strong></h1>
+    <p class="p-about">
+        Every web page can be looked at as one long string wrapped in a bunch of Html tags, this
+        is exactly how the service is treating it. Strings can be manipulated, parts of the string
+        can be taken out, trimmed, replaced or modified - it started out that simple.
+        C# has a WebClient which can be used to download a web page as a Html string, however early
+        on i've discovered a ready-out-of-the-box solution -
+        <a href="https://html-agility-pack.net/" target="_blank" class="headline-link"><b>Html Agility Pack</b></a>,
+        credit to the team behind it.
+        Html agility pack is what does most of the heavy lifting, providing an easy way to manipulate
+        Html elements and the text between them.
+    </p>
+    <div style="height:10px"></div>
+
+    <h1 class="custom-turqoise"><strong><span class="glyphicon glyphicon-cog"></span> Under the hood</strong></h1>
+    <p class="p-about">
+        Each news source (input) has it's own data model, the task was to abstract the data model
+        as much as possible, so minimal modifications are needed for each model (news source).
+    </p>
+    <div style="height:10px"></div>
+
+    <h1 class="custom-turqoise" id="WebsiteDataModel"><strong><span class="glyphicon glyphicon-qrcode"></span> Sample Website data model</strong></h1>
+    <p class="p-about">
+        This is the model used for parsing the Html of a website, I have extracted an interface for
+        better code integrity and to ensure i do not miss any of the required variables needed for
+        each website.
+    </p>
+    <pre><code class="c#">
+    public interface IWebsiteModel
+    {
+        string WebsiteUrl { get; set; } //Url
+        string NewsSource { get; set; }
+        //More than one Xpath might be needed for the same website
+        List<span class="hljs-class">&#60;string&#62;</span>HeadlineXpaths { get; set; }
+        string TitleXpath { get; set; }
+        string HeadlineURLXPath { get; set; }
+        //More than one Xpath might be needed for the same website
+        List<span class="hljs-class">&#60;string&#62;</span>ArticleXPaths { get; set; }
+        string Headline { get; set; }
+        string HeadlineUrl { get; set; }
+        string ArticleURL { get; set; }
+        //Parsing the article url required 2 (or 3) strings to mark indexes
+        string SearchStringStart { get; set; }
+        string SearchStringEnd { get; set; }
+        int SearchStringOffset { get; set; }
+        //Some websites omit the root url in their links, this variable would hold it
+        string UrlModify { get; set; }
+        //Each website has their own image implementations, parsing the link can be tricky
+        string ImageXpath { get; set; }
+        string ImageSsStart { get; set; }
+        string ImageSsEnd { get; set; }
+    }
+</code></pre>
+    <div style="height:10px"></div>
+
+    <h1 class="custom-turqoise" id="SampleWebsiteModel"><strong><span class="glyphicon glyphicon-screenshot"></span> The magic of Xpaths...</strong></h1>
+    <p class="p-about">
+        Each Html element can be accessed with an Xpath, which is essentially a link to target
+        the required Html element. Each of my news source models contain a constructor which sets
+        the custom values needed for each source.
+    </p>
+<pre><code class="c#">
+    public SampleWebsiteModel()
+    {
+        WebsiteUrl = "https://www.SampleNewsWebsite.com";
+        NewsSource = "SampleWebsite";
+        HeadlineXpaths = new List<span class="hljs-class">&#60;string&#62;</span>
+        {
+        "//body/div/div/main/div/div/div/div/div/section/div/div/div/div/div/article/div/div",
+        "//body/div/div/main/div/div/div/div/div/section/div/div/div/div/div/div/div/div/article/div/div"
+        };
+        TitleXpath = "//h1";
+    }
+</code></pre>
+    <p class="p-about">
+        I wonder why the websites feel so bloated? The articles in this particular one are nested
+        inside <b>21</b> elements...
+    </p>
+    <div style="height:10px"></div>
+
+    <h1 class="custom-turqoise"><strong><span class="glyphicon glyphicon-qrcode"></span> Sample Database model</strong></h1>
+    <p class="p-about">
+        The above Website model is used is used to parse all the needed Html elements, after all
+        the parsing is done, the data is stored in a new Data model which is less complex
+        (trankfully).
+    </p>
+    <pre><code class="c#">
+    public class DataEntryModel
+    {
+        public <span class="hljs-class">DateTime</span> TimeAdded { get; set; }
+        public string Headline { get; set; }
+        public string HeadlineUrl { get; set; }
+        public string NewsSource { get; set; }
+        public string Article { get; set; }
+        public string ImagePath { get; set; }
+        public string Category { get; set; }
+    }
+</code></pre>
+    <div style="height:10px"></div>
+
+    <h1 class="custom-turqoise"><strong><span class="
+glyphicon glyphicon-scissors"></span> String parsing & manipulation</strong></h1>
+    <p class="p-about">
+        While
+        <a href="https://html-agility-pack.net/" target="_blank" class="headline-link"><b>Html Agility Pack</b></a>
+        provides some great functions to extract the needed Html elements, extracting a link
+        from an Html element is something i've had to come up with myself. This is where Substring
+        has saved the day. This function i've adopted uses values from
+        <a href="#SampleWebsiteModel" class="headline-link">SampleWebsiteModel()</a> and
+        <a href="#WebsiteDataModel" class="headline-link">Website Data Model</a> to extract exacatly what i need.
+    </p>
+    <pre><code class="c#">
+    public string Substringurl(string ss, string searchstringstart, string searchstringend, int searchstringoffset)
+    {
+        String s = ss;
+        int startIndex = s.IndexOf(searchstringstart) + searchstringoffset;
+        int endIndex = s.IndexOf(searchstringend);
+        if (ss.Contains(searchstringstart) && ss.Contains(searchstringend))
+        {
+            String substring = s.Substring(startIndex, endIndex - searchstringend.Length + searchstringend.Length - startIndex);
+            return substring;
+        }
+        else
+        {
+            return null;
+        }
+    }
+</code></pre>
+    <p class="p-about">
+        This function was notorious for throwing a <b>NullPointerException</b> at me, so a simple check
+        was implemented to check if the given string actually contains the start & end index strings.
+    </p>
+    <div style="height:10px"></div>
+
+    <h1 class="custom-turqoise"><strong><span class="glyphicon glyphicon-retweet"></span> The main loop</strong></h1>
+    <p class="p-about">
+        After creating my Data models, parsing functions and business logic, all there was to do
+        was put it in a loop, to constantly wonder the web endlessly, looking for content..
+        (I wish building this was as simple as described here)
+    </p>
+    <pre><code class="c#">
+    <span class="hljs-class">HtmlScraper</span> htmlSraper = <span class="hljs-class">Factory</span>.CreateHtmlScraper();
+    <span class="hljs-class">Logger</span> _logger = <span class="hljs-class">Factory</span>.CreateLogger();
+
+    GetData(htmlSraper, new <span class="hljs-class">Model1</span>());
+    GetData(htmlSraper, new <span class="hljs-class">Model2</span>());
+    GetData(htmlSraper, new <span class="hljs-class">Model3</span>());
+    GetData(htmlSraper, new <span class="hljs-class">Model4</span>());
+    GetData(htmlSraper, new <span class="hljs-class">Model5</span>());
+    GetData(htmlSraper, new <span class="hljs-class">Model6</span>());
+    GetData(htmlSraper, new <span class="hljs-class">Model7</span>());
+
+    void GetData(<span class="hljs-class">HtmlScraper</span> htmlscraper, <span class="hljs-class">IWebsiteModel</span> model, bool isTest = false) {
+        foreach (var x in model.HeadlineXpaths)
+            {
+                model.HeadlineURLXPath = x + "/a";
+                htmlscraper.Parse(model, x, isTest);
+            }
+        }
+</code></pre>
+    <h1 class="custom-turqoise"><strong><span class="glyphicon glyphicon-console"></span> Console output</strong></h1>
+    <pre><code class="bash">
+    [news source] Graham slams FBI methods after Horowitz report, says probe plunged into 'criminal enterprise'
+    + Article
+    + Image
+    Added to Database
+
+    [news source] Microsoft to kill off Wunderlist in favor of To Do in May 2020
+    + Article
+    + Image
+    Added to Database
+
+    [news source] Gohmert tears into Nadler over Dems' treatment of counsel: 'How much money do you have to give?'
+    + Article
+    + Image
+    Added to Database
+</code></pre>
+    <h1 class="custom-turqoise"><strong><span class="glyphicon glyphicon-ok"></span> Voila!</strong></h1>
+    <p class="p-about">
+        Lazy news is out in the web searching for news, so I don't have to.
+    </p>
+    <div style="height:10px"></div>
+
+    <h1 class="custom-turqoise">
+        <strong>
+            Please check out my other projects at
+            <a href="https://www.davidhade.net/" target="_blank" class="headline-link">
+                DavidHade.Net
+            </a>
+        </strong>
+    </h1>
+    <div style="height:25px"></div>
+</div>
+
+
+
+
+<script src="~/Content/Highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+</script>

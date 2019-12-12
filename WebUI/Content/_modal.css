@@ -1,0 +1,41 @@
+﻿#modalDialog {
+    background: white;
+    position: fixed;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    margin: -25% 0 0 -25%;
+    /* Embiggen */
+    transform: scale(1.5); /* prefix me */
+    /* Hidden */
+    opacity: 0;
+    pointer-events: none;
+}
+
+.dialogIsOpen #page-wrap, .dialogIsOpen .body-content {
+    /* Blur and de-color */
+    -webkit-filter: blur(5px) grayscale(50%);
+    /* Recede */
+    -webkit-transform: scale(1);
+}
+
+.dialogIsOpen #modalDialog {
+    /* Regular size and visible */
+    transform: scale(1); /* prefix me */
+    opacity: 1;
+    /* Clickable */
+    pointer-events: auto;
+}
+
+#modalDialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    bottom: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#page-wrap, #modal {
+    transition: all 0.4s ease; /* prefix me */
+}

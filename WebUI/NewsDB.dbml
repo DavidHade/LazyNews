@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="NewsDB" Class="NewsDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=NewsDB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="NewsDBConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=lazynews.database.windows.net;Initial Catalog=NewsDB;Persist Security Info=True;User ID=lazynews" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="NewsDBConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.NewsEntry" Member="NewsEntries">
     <Type Name="NewsEntry">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -8,6 +8,7 @@
       <Column Name="HeadlineUrl" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="NewsSource" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Article" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Imagepath" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
