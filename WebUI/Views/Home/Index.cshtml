@@ -1,4 +1,4 @@
-﻿@model WebUI.Models.HeadlineViewModel
+﻿@*@model WebUI.Models.HeadlineViewModel*@
 
 @{
     ViewBag.Title = "Home Page";
@@ -25,9 +25,13 @@
     </div>
 </div>
 
-<div class="filter-wrapper col-md-3">
-    <div class="filter-btn"><button type="button" href="#filterColumn" data-toggle="collapse" aria-expanded="true" class="btn btn-danger dropdown-toggle"><span class="glyphicon glyphicon-filter"></span></button><span class="h5"> Filter by source</span></div>
-    <div class="collapse filter-column" id="filterColumn">
+<div class="col-sm-3 filter-wrapper sidebar">
+    @Html.Partial("Sidebar")
+</div>
+
+@*<div class="filter-wrapper col-md-3">
+
+    <div class="filter-column" id="filterColumn">
         <div class="list-group">
             @Html.ActionLink("All", "ShowData", null, new { @class = Request["newsSource"] == null ? "list-group-item active" : "list-group-item" })
             @Html.ActionLink("The Guardian", "ShowData", new { newsSource = "theguardian" }, new { @class = Request["newsSource"] == "theguardian" ? "list-group-item active" : "list-group-item" })
@@ -37,9 +41,9 @@
             @Html.ActionLink("The Verge", "ShowData", new { newsSource = "theverge" }, new { @class = Request["newsSource"] == "theverge" ? "list-group-item active" : "list-group-item" })
         </div>
     </div>
-</div>
+</div>*@
 
-<div class="row col-md-9 articles-wrapper">
+<div class="col-sm-offset-3 row col-sm-9  articles-wrapper pull-right">
     @Html.Partial("_ProjectData", (ViewBag.Projects as WebUI.Models.HeadlineViewModel))
 
 </div>

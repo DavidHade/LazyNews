@@ -1,0 +1,12 @@
+﻿
+
+<div class="filter-column" id="filterColumn">
+    <div class="list-group">
+        @Html.ActionLink("All", "ShowData", null, new { @class = Request["newsSource"] == null ? "list-group-item active" : "list-group-item" })
+        @Html.ActionLink("The Guardian", "ShowData", new { newsSource = "theguardian" }, new { @class = Request["newsSource"] == "theguardian" ? "list-group-item active" : "list-group-item" })
+        @Html.ActionLink("Fox News", "ShowData", new { newsSource = "foxnews" }, new { @class = Request["newsSource"] == "foxnews" ? "list-group-item active" : "list-group-item" })
+        @Html.ActionLink("Bbc", "ShowData", new { newsSource = "bbc" }, new { @class = Request["newsSource"] == "bbc" ? "list-group-item active" : "list-group-item" })
+        @Html.ActionLink("New York Times", "ShowData", new { newsSource = "nytimes" }, new { @class = Request["newsSource"] == "nytimes" ? "list-group-item active" : "list-group-item" })
+        @Html.ActionLink("The Verge", "ShowData", new { newsSource = "theverge" }, new { @class = Request["newsSource"] == "theverge" ? "list-group-item active" : "list-group-item" })
+    </div>
+</div>

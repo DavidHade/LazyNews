@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -13,26 +15,72 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse-navbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                @*<div class="filter-btn">*@
+                <button type="button" data-toggle="collapse" data-target="#filterColumn2"  class="btn btn-danger navbar-toggle"><span class="glyphicon glyphicon-filter"></span></button>
+                @*</div>*@
                 <a href="@Url.RouteUrl("ProjectDataList")"><img src="~/Content/img/logo.png" class="logo" height="45" /></a>
                 @*@Html.ActionLink("news", "Index", "Home", new { area = "" }, new { @class = "navbar-brand danger" })*@
             </div>
-         
-            <div class="navbar-collapse collapse">
+
+            <div class="navbar-collapse collapse" id="collapse-navbar">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                 </ul>
-
             </div>
+            <div class="collapse" id="filterColumn2">
+                <ul class="nav navbar-nav">
+
+                        <li>
+                            @Html.ActionLink("All", "ShowData", null, new { @class = Request["newsSource"] == null ? "nav-active" : null })
+                        </li>
+                        <li>
+                            @Html.ActionLink("The Guardian", "ShowData", new { newsSource = "theguardian" }, new { @class = Request["newsSource"] == "theguardian" ? "nav-active" : null })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Fox News", "ShowData", new { newsSource = "foxnews" }, new { @class = Request["newsSource"] == "foxnews" ? "nav-active" : null })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Bbc", "ShowData", new { newsSource = "bbc" }, new { @class = Request["newsSource"] == "bbc" ? "nav-active" : null })
+                        </li>
+                        <li>
+                            @Html.ActionLink("New York Times", "ShowData", new { newsSource = "nytimes" }, new { @class = Request["newsSource"] == "nytimes" ? "nav-active" : null })
+                        </li>
+                        <li>
+                            @Html.ActionLink("The Verge", "ShowData", new { newsSource = "theverge" }, new { @class = Request["newsSource"] == "theverge" ? "nav-active" : null })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Cnet", "ShowData", new { newsSource = "Cnet" }, new { @class = Request["newsSource"] == "Cnet" ? "nav-active" : null })
+                        </li>
+                </ul>
+            </div>
+                
+         
+
+            @*<div class="filter-wrapper col-md-3 pull-left">
+                <div class="collapse filter-column collapse-filter" id="filterColumn">
+                    <div class="list-group">
+                        @Html.ActionLink("All", "ShowData", null, new { @class = Request["newsSource"] == null ? "list-group-item active" : "list-group-item" })
+                        @Html.ActionLink("The Guardian", "ShowData", new { newsSource = "theguardian" }, new { @class = Request["newsSource"] == "theguardian" ? "list-group-item active" : "list-group-item" })
+                        @Html.ActionLink("Fox News", "ShowData", new { newsSource = "foxnews" }, new { @class = Request["newsSource"] == "foxnews" ? "list-group-item active" : "list-group-item" })
+                        @Html.ActionLink("Bbc", "ShowData", new { newsSource = "bbc" }, new { @class = Request["newsSource"] == "bbc" ? "list-group-item active" : "list-group-item" })
+                        @Html.ActionLink("New York Times", "ShowData", new { newsSource = "nytimes" }, new { @class = Request["newsSource"] == "nytimes" ? "list-group-item active" : "list-group-item" })
+                        @Html.ActionLink("The Verge", "ShowData", new { newsSource = "theverge" }, new { @class = Request["newsSource"] == "theverge" ? "list-group-item active" : "list-group-item" })
+                    </div>
+                </div>
+            </div>*@
 
         </div>
     </div>
+
     <div class="container body-content">
+        
         @RenderBody()
+
         @*<hr />
         <footer>
             <p class="padding-lr-15">&copy; @DateTime.Now.Year - I Missed The News.</p>

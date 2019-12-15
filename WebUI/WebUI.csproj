@@ -140,6 +140,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\HeadlineViewModel.cs" />
+    <Compile Include="Models\QueryStringModel.cs" />
     <Compile Include="NewsDB.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -315,6 +316,7 @@
     <Content Include="Views\Shared\_ProjectData.cshtml" />
     <Content Include="Views\Shared\_ModalView.cshtml" />
     <Content Include="Views\Shared\_ModalView2.cshtml" />
+    <Content Include="Views\Shared\Sidebar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
