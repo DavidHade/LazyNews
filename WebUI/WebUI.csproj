@@ -369,7 +369,16 @@
     <Content Include="Views\Shared\_ModalView.cshtml" />
     <Content Include="Views\Shared\_ModalView2.cshtml" />
     <Content Include="Views\Shared\Sidebar.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.config.example" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
