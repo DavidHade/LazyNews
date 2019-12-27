@@ -38,22 +38,25 @@ namespace WebUI.Controllers
             ViewBag.IsEndOfRecords = false;
             if (Request.IsAjaxRequest())
             {
-                HeadlineViewModel projects = GetData(pageNum.Value, newsSource);
-                ViewBag.IsEndOfRecords = (projects.NewsHeadlines.Any());
-                return PartialView("_ProjectData", projects);
+                //HeadlineViewModel projects = GetData(pageNum.Value, newsSource);
+                HeadlineViewModel model = GetData(pageNum.Value, newsSource);
+                //ViewBag.IsEndOfRecords = (projects.NewsHeadlines.Any());
+                ViewBag.isEndOfRecords = (model.NewsHeadlines.Any());
+                //return PartialView("_ProjectData", projects);
+                return PartialView("_ProjectData", model);
             }
             else
             {
                 if (newsSource == null)
                 {
-                    ViewBag.Projects = GetData(pageNum.Value);
+                    ViewBag.models = GetData(pageNum.Value);
 
-                    return View("Index");
+                    return View("Index", ViewBag.models);
                 }else
                 {
-                    ViewBag.Projects = GetData(pageNum.Value, newsSource);
+                    ViewBag.models = GetData(pageNum.Value, newsSource);
 
-                    return View("Index");
+                    return View("Index", ViewBag.models);
                 }   
             }
         }
@@ -69,6 +72,7 @@ namespace WebUI.Controllers
             if (newsSource != null)
             {
                 //List<LazyNews.Core.Models.NewsEntry> catObj = (from x in dc.NewsEntries where x.NewsSource == newsSource select x).OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
+                //List<NewsEntry> catObj = context.FindHeadlines(newsSource).OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
                 List<NewsEntry> catObj = context.FindHeadlines(newsSource).OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
                 headlinesObj.NewsHeadlines = catObj;
                 return headlinesObj;
@@ -83,14 +87,8 @@ namespace WebUI.Controllers
 
         public ActionResult Details(int Id)
         {
-            //NewsDBDataContext dc = new NewsDBDataContext();
-            //var Obj = new HeadlineViewModel();
-
-            // Converting Id to string because Find() takes in a string
             NewsEntry dbEntry = new LazyNews.Core.Models.NewsEntry();
             dbEntry = context.Find(Id);
-            //HeadlineViewModel model = new HeadlineViewModel();
-            //Obj.NewsHeadlines = dbEntry;
 
             return PartialView("_ModalView", dbEntry);
         }
@@ -98,11 +96,15 @@ namespace WebUI.Controllers
         //[Route("About")]
         public ActionResult About()
         {
-            return View();
+            //return View();
+            // Redirect to main page instead
+            return RedirectToAction("ShowData");
         }
         public ActionResult Contact()
         {
-            return View();
+            //return View(); 
+            // Redirect to main page instead
+            return RedirectToAction("ShowData");
         }
     }
 }

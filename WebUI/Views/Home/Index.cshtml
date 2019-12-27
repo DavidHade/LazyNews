@@ -44,7 +44,7 @@
 </div>*@
 
 <div class="row col-sm-9 articles-wrapper">
-    @Html.Partial("_ProjectData", (ViewBag.Projects as LazyNews.Core.ViewModels.HeadlineViewModel))
+    @Html.Partial("_ProjectData", (ViewBag.models as List<LazyNews.Core.Models.NewsEntry>))
 
 </div>
 
