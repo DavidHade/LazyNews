@@ -9,6 +9,7 @@
       <Column Name="NewsSource" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Article" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Imagepath" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Category" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
