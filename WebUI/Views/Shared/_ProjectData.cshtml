@@ -1,5 +1,10 @@
-﻿@model WebUI.Models.HeadlineViewModel 
+﻿@model LazyNews.Core.ViewModels.HeadlineViewModel
 
+
+@foreach (var i in Model.NewsHeadlines)
+{
+
+}
 
 @foreach (var item in Model.NewsHeadlines)
 {
@@ -7,16 +12,16 @@
             <div class="article-container">
                 <div class="pull-right h6"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>@item.NewsSource.ToUpperInvariant()</div>
 
-                @if (@item.TimeAdded.Value.DayOfYear == DateTime.Now.DayOfYear)
+                @if (item.TimeAdded.DayOfYear == DateTime.Now.DayOfYear)
                 {
                     <div class="h5">
-                        <span class="label label-danger">New</span><span> <time class="timeago" datetime="@item.TimeAdded.Value.ToLongDateString()  @item.TimeAdded.Value.ToLongTimeString()"> [time]</time></span>
+                        <span class="label label-danger">New</span><span> <time class="timeago" datetime="@item.TimeAdded.ToLongDateString()  @item.TimeAdded.ToLongTimeString()"> [time]</time></span>
                     </div>
                 }
                 else
                 {
                     <div class="h5">
-                        <time class="timeago" datetime="@item.TimeAdded.Value.ToLongDateString() @item.TimeAdded.Value.ToLongTimeString()">[time]</time>
+                        <time class="timeago" datetime="@item.TimeAdded.ToLongDateString() @item.TimeAdded.ToLongTimeString()">[time]</time>
                     </div>
                 }
 

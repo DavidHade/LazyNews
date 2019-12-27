@@ -1,10 +1,10 @@
-﻿using System;
+﻿using LazyNews.Core.ViewModels;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using WebUI.Models;
+using LazyNews.Core.Contracts;
+using LazyNews.DataAccess.SQL;
+using LazyNews.Core.Models;
 
 namespace WebUI.Controllers
 {
@@ -12,10 +12,19 @@ namespace WebUI.Controllers
     {
         public const int RecordsPerPage = 10;
 
+        IRepository<NewsEntry> context = new SQLRepository<LazyNews.Core.Models.NewsEntry>(new DataContext());
+
+        // TODO - Fix zero parameter constructor error
+        //public HomeController(IRepository<LazyNews.Core.Models.NewsEntry> newsContext)
+        //{
+        //    context = newsContext;
+        //}
+
         public HomeController()
         {
             ViewBag.RecordsPerPage = RecordsPerPage;
         }
+
 
         public ActionResult Index(string newsSource = null)
         {
@@ -51,7 +60,7 @@ namespace WebUI.Controllers
 
         public HeadlineViewModel GetData(int pageNum, string newsSource=null)
         {
-            NewsDBDataContext dc = new NewsDBDataContext();
+            //NewsDBDataContext dc = new NewsDBDataContext();
             var headlinesObj = new HeadlineViewModel();
             
             int from = (pageNum * RecordsPerPage);
@@ -59,13 +68,14 @@ namespace WebUI.Controllers
             
             if (newsSource != null)
             {
-                List<NewsEntry> catObj = (from x in dc.NewsEntries where x.NewsSource == newsSource select x).OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
+                //List<LazyNews.Core.Models.NewsEntry> catObj = (from x in dc.NewsEntries where x.NewsSource == newsSource select x).OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
+                List<NewsEntry> catObj = context.FindHeadlines(newsSource).OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
                 headlinesObj.NewsHeadlines = catObj;
                 return headlinesObj;
             }
             else
             {
-                List<NewsEntry> Obj = (from e in dc.NewsEntries select e).OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
+                List<NewsEntry> Obj = context.Collection().OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
                 headlinesObj.NewsHeadlines = Obj;
                 return headlinesObj;
             }  
@@ -73,15 +83,16 @@ namespace WebUI.Controllers
 
         public ActionResult Details(int Id)
         {
-            NewsDBDataContext dc = new NewsDBDataContext();
-            var Obj = new HeadlineViewModel();
+            //NewsDBDataContext dc = new NewsDBDataContext();
+            //var Obj = new HeadlineViewModel();
 
-            List<NewsEntry> dbEntry = (from e in dc.NewsEntries where e.id == Id select e).ToList();
-            Obj.NewsHeadlines = dbEntry;
-            
-            
+            // Converting Id to string because Find() takes in a string
+            NewsEntry dbEntry = new LazyNews.Core.Models.NewsEntry();
+            dbEntry = context.Find(Id);
+            //HeadlineViewModel model = new HeadlineViewModel();
+            //Obj.NewsHeadlines = dbEntry;
 
-            return PartialView("_ModalView", Obj);
+            return PartialView("_ModalView", dbEntry);
         }
 
         //[Route("About")]

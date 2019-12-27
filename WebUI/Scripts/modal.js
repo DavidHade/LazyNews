@@ -1,6 +1,6 @@
-﻿var PostBackURL = "https://lazynews.azurewebsites.net/Home/Details";
+﻿//var PostBackURL = "https://lazynews.azurewebsites.net/Home/Details";
 //var url = 
-//var PostBackURL = "http://localhost:63902/Home/Details";
+var PostBackURL = "http://localhost:63902/Home/Details";
     function showmodal() {
     $(".anchorDetail").click(function () {
         //debugger;

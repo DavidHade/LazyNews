@@ -1,31 +1,27 @@
-﻿@model WebUI.Models.HeadlineViewModel
+﻿@model LazyNews.Core.Models.NewsEntry
 
-@foreach (var item in Model.NewsHeadlines)
-{
-    
-        <div class="article-container" style="border-radius:3px">
+    <div class="article-container" style="border-radius:3px">
 
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-            <div class="modal-header">
-                @*<h4 style="color:darkred">[id: @item.id] @item.TimeAdded - @item.NewsSource</h4>*@
-                <h4 class="modal-title">@item.Headline</h4>
-            </div>
-
-            <div class="modal-body">
-                @Html.Raw(item.Article)
-                @if (@item.Article.Length < 1)
-                {
-                    <div class="alert-warning alert" role="alert">
-                        Instant article not available, please visit the source
-                        <button class="close" data-dismiss="alert">x</button>
-                    </div>
-                }
-            </div>
-
-            <div class="modal-footer">
-                <a class="btn btn-success pull-left" href="@item.HeadlineUrl" target="_blank">Read source &raquo;</a>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <div class="modal-header">
+            @*<h4 style="color:darkred">[id: @item.id] @item.TimeAdded - @item.NewsSource</h4>*@
+            <h4 class="modal-title">@Model.Headline</h4>
         </div>
-    
-}
+
+        <div class="modal-body">
+            @Html.Raw(Model.Article)
+            @if (Model.Article.Length < 1)
+            {
+                <div class="alert-warning alert" role="alert">
+                    Instant article not available, please visit the source
+                    <button class="close" data-dismiss="alert">x</button>
+                </div>
+            }
+        </div>
+
+        <div class="modal-footer">
+            <a class="btn btn-success pull-left" href="@Model.HeadlineUrl" target="_blank">Read source &raquo;</a>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+    </div> 
+

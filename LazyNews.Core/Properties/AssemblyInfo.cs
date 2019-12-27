@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LazyNews.DataAccess.SQL")]
+[assembly: AssemblyTitle("LazyNews.Core")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LazyNews.DataAccess.SQL")]
+[assembly: AssemblyProduct("LazyNews.Core")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b4d22082-28c9-47b7-b1e9-8d462d219083")]
+[assembly: Guid("ed75f19c-c117-4bd7-85bb-9361ecde038f")]
 
 // Version information for an assembly consists of the following four values:
 //
