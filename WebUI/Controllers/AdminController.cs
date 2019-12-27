@@ -8,7 +8,9 @@ namespace WebUI.Controllers
 {
     public class AdminController : Controller
     {
+        public int MyProperty { get; set; }
         // GET: Admin
+        //hjAGD
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
