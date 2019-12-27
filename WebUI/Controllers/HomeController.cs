@@ -56,15 +56,16 @@ namespace WebUI.Controllers
             
             int from = (pageNum * RecordsPerPage);
 
-            List<NewsEntry> Obj = (from e in dc.NewsEntries select e).OrderByDescending(e => e.TimeAdded).ThenByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
+            
             if (newsSource != null)
             {
-                List<NewsEntry> catObj = (from x in dc.NewsEntries where x.NewsSource == newsSource select x).OrderByDescending(e => e.TimeAdded).ThenByDescending(e => e.TimeAdded).ToList().Skip(from).Take(10).ToList();
+                List<NewsEntry> catObj = (from x in dc.NewsEntries where x.NewsSource == newsSource select x).OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
                 headlinesObj.NewsHeadlines = catObj;
                 return headlinesObj;
             }
             else
             {
+                List<NewsEntry> Obj = (from e in dc.NewsEntries select e).OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
                 headlinesObj.NewsHeadlines = Obj;
                 return headlinesObj;
             }  
