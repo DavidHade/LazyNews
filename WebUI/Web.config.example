@@ -10,8 +10,6 @@
   </configSections>
   <connectionStrings>
     <add name="local" connectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=MyShopDemo;Integrated Security=True" providerName="System.Data.SqlClient" />
-    <add name="NewsDBConnectionString" connectionString="Data Source=lazynews.database.windows.net;Initial Catalog=NewsDB;Persist Security Info=True;User ID=lazynews;Password=86*q2pKeaH@xzk^mVa" providerName="System.Data.SqlClient" />
-    <add name="DefaultConnection" connectionString="Data Source=lazynews.database.windows.net;Initial Catalog=NewsDB;Persist Security Info=True;User ID=lazynews;Password=86*q2pKeaH@xzk^mVa" providerName="System.Data.SqlClient" />
   </connectionStrings>
   <appSettings>
     <add key="webpages:Version" value="3.0.0.0" />
