@@ -369,6 +369,7 @@
     <Content Include="Views\Shared\_ModalView.cshtml" />
     <Content Include="Views\Shared\_ModalView2.cshtml" />
     <Content Include="Views\Shared\Sidebar.cshtml" />
+    <Content Include="Web.config.example" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
