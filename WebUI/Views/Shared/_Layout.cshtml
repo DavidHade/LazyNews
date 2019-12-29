@@ -27,36 +27,34 @@
                 @*@Html.ActionLink("news", "Index", "Home", new { area = "" }, new { @class = "navbar-brand danger" })*@
             </div>
 
-            <div class="navbar-collapse collapse" id="collapse-navbar">
-                @*<ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                </ul>*@
+            <div class="navbar-collapse collapse">
                 @Html.Partial("_LoginPartial")
             </div>
             <div class="collapse" id="filterColumn2">
+                @Html.Partial("_LoginPartial") 
                 <ul class="nav navbar-nav">
 
-                        <li>
-                            @Html.ActionLink("All", "ShowData", null, new { @class = Request["newsSource"] == null ? "nav-active" : null })
-                        </li>
-                        <li>
-                            @Html.ActionLink("The Guardian", "ShowData", new { newsSource = "theguardian" }, new { @class = Request["newsSource"] == "theguardian" ? "nav-active" : null })
-                        </li>
-                        <li>
-                            @Html.ActionLink("Fox News", "ShowData", new { newsSource = "foxnews" }, new { @class = Request["newsSource"] == "foxnews" ? "nav-active" : null })
-                        </li>
-                        <li>
-                            @Html.ActionLink("Bbc", "ShowData", new { newsSource = "bbc" }, new { @class = Request["newsSource"] == "bbc" ? "nav-active" : null })
-                        </li>
-                        <li>
-                            @Html.ActionLink("New York Times", "ShowData", new { newsSource = "nytimes" }, new { @class = Request["newsSource"] == "nytimes" ? "nav-active" : null })
-                        </li>
-                        <li>
-                            @Html.ActionLink("The Verge", "ShowData", new { newsSource = "theverge" }, new { @class = Request["newsSource"] == "theverge" ? "nav-active" : null })
-                        </li>
-                        <li>
-                            @Html.ActionLink("Cnet", "ShowData", new { newsSource = "Cnet" }, new { @class = Request["newsSource"] == "Cnet" ? "nav-active" : null })
-                        </li>
+                    <li>
+                        @Html.ActionLink("All", "ShowData", null, new { @class = Request["newsSource"] == null ? "nav-active" : null })
+                    </li>
+                    <li>
+                        @Html.ActionLink("The Guardian", "ShowData", new { newsSource = "theguardian" }, new { @class = Request["newsSource"] == "theguardian" ? "nav-active" : null })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Fox News", "ShowData", new { newsSource = "foxnews" }, new { @class = Request["newsSource"] == "foxnews" ? "nav-active" : null })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Bbc", "ShowData", new { newsSource = "bbc" }, new { @class = Request["newsSource"] == "bbc" ? "nav-active" : null })
+                    </li>
+                    <li>
+                        @Html.ActionLink("New York Times", "ShowData", new { newsSource = "nytimes" }, new { @class = Request["newsSource"] == "nytimes" ? "nav-active" : null })
+                    </li>
+                    <li>
+                        @Html.ActionLink("The Verge", "ShowData", new { newsSource = "theverge" }, new { @class = Request["newsSource"] == "theverge" ? "nav-active" : null })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Cnet", "ShowData", new { newsSource = "Cnet" }, new { @class = Request["newsSource"] == "Cnet" ? "nav-active" : null })
+                    </li>
                 </ul>
             </div>
                 
