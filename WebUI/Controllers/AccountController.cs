@@ -20,6 +20,7 @@ namespace WebUI
 
         public AccountController()
         {
+
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)

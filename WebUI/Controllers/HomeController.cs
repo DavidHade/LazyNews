@@ -12,18 +12,20 @@ namespace WebUI.Controllers
     {
         public const int RecordsPerPage = 10;
 
-        IRepository<NewsEntry> context = new SQLRepository<LazyNews.Core.Models.NewsEntry>(new DataContext());
+        //IRepository<NewsEntry> context = new SQLRepository<LazyNews.Core.Models.NewsEntry>(new DataContext());
+        IRepository<NewsEntry> context;
 
-        // TODO - Fix zero parameter constructor error
-        //public HomeController(IRepository<LazyNews.Core.Models.NewsEntry> newsContext)
-        //{
-        //    context = newsContext;
-        //}
-
-        public HomeController()
+        
+        public HomeController(IRepository<NewsEntry> newsContext)
         {
+            context = newsContext;
             ViewBag.RecordsPerPage = RecordsPerPage;
         }
+
+        //public HomeController()
+        //{
+        //    ViewBag.RecordsPerPage = RecordsPerPage;
+        //}
 
 
         public ActionResult Index(string newsSource = null)
