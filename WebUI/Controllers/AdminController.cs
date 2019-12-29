@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace WebUI.Controllers
 {
+
     public class AdminController : Controller
     {
         IRepository<NewsEntry> context;

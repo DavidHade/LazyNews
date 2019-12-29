@@ -6,5 +6,42 @@
 
 <h2>Index</h2>
 
+<div class="col-sm-3 filter-wrapper sidebar">
+    @Html.Partial("Sidebar")
+</div>
+
+<div class="row col-sm-9 articles-wrapper">
+    @Html.Partial("_ProjectData", (ViewBag.models as List<LazyNews.Core.Models.NewsEntry>))
+</div>
+
+<div id="Modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='ModalContent'></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+    <script src="~/Scripts/lazyLoading.js"></script>
+    <script src="~/Scripts/modal.js"></script>
+    <script src="~/Scripts/jquery.timeago.js"></script>
+    <script type="text/javascript">
+        var url = window.location.href;
+        $(window).scroll(scrollHandler);
+
+        showmodal(url);
+
+        jQuery(document).ready(function () {
+
+            jQuery("time.timeago").timeago();
+        });
+    </script>
+}
+
+
 
 

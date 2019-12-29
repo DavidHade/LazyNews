@@ -27,7 +27,7 @@ function loadProjectData(loadMoreRowsUrl) {
             success: function (articles, textstatus) {
                 if (articles != '') {
                     $(".row").append(articles);
-                    showmodal();
+                    showmodal(loadMoreRowsUrl);
                     $("time.timeago").timeago();
                 }
                 else {

@@ -1,7 +1,7 @@
 ﻿var PostBackURL = "https://lazynews.azurewebsites.net/Home/Details";
 //var url = 
 //var PostBackURL = "http://localhost:63902/Home/Details";
-    function showmodal() {
+    function showmodal(url) {
     $(".anchorDetail").click(function () {
         //debugger;
         var $buttonClicked = $(this);
@@ -9,7 +9,8 @@
         var options = { "backdrop": "static", keyboard: true };
         $.ajax({
             type: "GET",
-            url: PostBackURL,
+            //url: PostBackURL,
+            url: url + "/Home/Details",
             contentType: "application/json; charset=utf-8",
             data: { "Id": id },
             datatype: "json",
