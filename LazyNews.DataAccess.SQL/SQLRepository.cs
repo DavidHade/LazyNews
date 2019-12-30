@@ -46,19 +46,9 @@ namespace LazyNews.DataAccess.SQL
 
         }
 
-        public IQueryable<T> FindHeadlines(string Headline)
+        public IQueryable<T> FindBySource(string newsSource)
         {
-            //var hd = dbSet.Where(x => x.Headline == Headline).ToList();
-            //if (hd != null)
-            //{
-            //    return hd;
-            //}
-            //else
-            //{
-            //    return null;
-            //}
-
-            return dbSet.Where(x => x.Headline == Headline);
+            return dbSet.Where(x => x.NewsSource == newsSource);
         }
 
         public void Insert(T t)

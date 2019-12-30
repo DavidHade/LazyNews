@@ -40,7 +40,7 @@ namespace WebUI.Controllers
 
                 ViewBag.isEndOfRecords = (model.NewsHeadlines.Any());
 
-                return PartialView("_ProjectData", model);
+                return PartialView("_AdminData", model);
             }
             else
             {
@@ -70,13 +70,13 @@ namespace WebUI.Controllers
             if (newsSource != null)
             {
 
-                List<NewsEntry> catObj = context.FindHeadlines(newsSource).OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
+                List<NewsEntry> catObj = context.FindBySource(newsSource).OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
                 headlinesObj.NewsHeadlines = catObj;
                 return headlinesObj;
             }
             else
             {
-                List<NewsEntry> Obj = context.Collection().OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
+                List<NewsEntry> Obj = context.Collection().Where(x => x.Category == null && x.Article != "").OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
                 headlinesObj.NewsHeadlines = Obj;
                 return headlinesObj;
             }
@@ -88,6 +88,24 @@ namespace WebUI.Controllers
             dbEntry = context.Find(Id);
 
             return PartialView("_ModalView", dbEntry);
+        }
+
+        public string Categorize(string category, int id)
+        {
+            var output = context.Find(id);
+
+            output.Category = category;
+
+            try
+            {
+                context.Update(output);
+                context.Commit();
+                return output.Headline;
+            }
+            catch (Exception ex)
+            {
+                return $"Error - {ex.ToString()}";
+            }
         }
     }
 }

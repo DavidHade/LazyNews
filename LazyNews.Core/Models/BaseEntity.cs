@@ -12,8 +12,7 @@ namespace LazyNews.Core.Models
     {
         [Key]
         public string id { get; set; }
-        public string Headline { get; set; }
-
+        public string NewsSource { get; set; }
         public BaseEntity()
         {
 

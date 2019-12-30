@@ -6,12 +6,18 @@
 
 <h2>Index</h2>
 
+<div class="action-bar add-shadow pull-right">
+    <div class="action-header"></div>
+    <div class="action-body"></div>
+</div>
+
+
 <div class="col-sm-3 filter-wrapper sidebar">
     @Html.Partial("Sidebar")
 </div>
 
 <div class="row col-sm-9 articles-wrapper">
-    @Html.Partial("_ProjectData", (ViewBag.models as List<LazyNews.Core.Models.NewsEntry>))
+    @Html.Partial("_AdminData", (ViewBag.models as List<LazyNews.Core.Models.NewsEntry>))
 </div>
 
 <div id="Modal" class="modal fade">
@@ -21,6 +27,7 @@
         </div>
     </div>
 </div>
+
 
 
 
@@ -39,6 +46,39 @@
 
             jQuery("time.timeago").timeago();
         });
+
+
+    </script>
+    <script>
+        function Categorize(id, category) {
+
+            //var $buttonClicked = $(this);
+            //var id = $buttonClicked.attr('data-id');
+
+            $.ajax({
+                type: 'GET',
+                url: window.location.href + "/Categorize",
+                data: { category: category, id: id },
+
+                success: function (returnValue, textstatus) {
+                    if (returnValue != '' && returnValue != null) {
+                        //debugger
+                        //alert(returnValue.Headline + " " + returnValue.Id);
+                        //$(".action-header").removeData();
+                        //$(".action-body").removeData();
+                        $(".action-bar").css("top", $(document).scrollTop() + 70);
+                        $(".action-header").html("Id: " + id);
+                        $(".action-body").html(returnValue + "<div class='action-bar-body'>Added with category: " + category + "</div>");
+                        $(".action-bar").show(200);
+                        $(".action-bar").delay(2000);
+                        $(".action-bar").hide(500);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        }
     </script>
 }
 

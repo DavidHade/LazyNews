@@ -10,13 +10,14 @@
         $.ajax({
             type: "GET",
             //url: PostBackURL,
-            url: url + "/Home/Details",
+            url: url + "/Details",
             contentType: "application/json; charset=utf-8",
             data: { "Id": id },
             datatype: "json",
             success: function (data) {
                 //debugger;
                 $('#ModalContent').html(data);
+                
                 $('#Modal').modal(options);
                 //$('.modal').addClass('fade');
                 //$('.modal').addClass('modal.dialog');

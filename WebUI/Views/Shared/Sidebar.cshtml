@@ -9,5 +9,6 @@
         @Html.ActionLink("New York Times", "ShowData", new { newsSource = "nytimes" }, new { @class = Request["newsSource"] == "nytimes" ? "list-group-item active" : "list-group-item" })
         @Html.ActionLink("The Verge", "ShowData", new { newsSource = "theverge" }, new { @class = Request["newsSource"] == "theverge" ? "list-group-item active" : "list-group-item" })
         @Html.ActionLink("Cnet", "ShowData", new { newsSource = "Cnet" }, new { @class = Request["newsSource"] == "Cnet" ? "list-group-item active" : "list-group-item" })
+        @Html.ActionLink("Cnet Tech", "ShowData", new { newsSource = "CnetTech" }, new { @class = Request["newsSource"] == "CnetTech" ? "list-group-item active" : "list-group-item" })
     </div>
 </div>

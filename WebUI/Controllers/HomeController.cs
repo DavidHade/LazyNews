@@ -33,7 +33,7 @@ namespace WebUI.Controllers
             return RedirectToAction("ShowData");
         }
 
-        [Route("")]
+        [Route("Home")]
         public ActionResult ShowData(int? pageNum, string newsSource=null)
         {
             pageNum = pageNum ?? 0;
@@ -75,7 +75,7 @@ namespace WebUI.Controllers
             {
                 //List<LazyNews.Core.Models.NewsEntry> catObj = (from x in dc.NewsEntries where x.NewsSource == newsSource select x).OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
                 //List<NewsEntry> catObj = context.FindHeadlines(newsSource).OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
-                List<NewsEntry> catObj = context.FindHeadlines(newsSource).OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
+                List<NewsEntry> catObj = context.FindBySource(newsSource).OrderByDescending(e => e.TimeAdded).Skip(from).Take(10).ToList();
                 headlinesObj.NewsHeadlines = catObj;
                 return headlinesObj;
             }

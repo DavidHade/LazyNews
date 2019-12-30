@@ -13,7 +13,7 @@ namespace LazyNews.Core.Contracts
         void Commit();
         void Delete(int Id);
         T Find(int Id);
-        IQueryable<T> FindHeadlines(string Headline);
+        IQueryable<T> FindBySource(string newsSource);
         void Insert(T t);
         void Update(T t);
     }

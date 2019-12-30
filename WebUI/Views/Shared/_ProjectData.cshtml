@@ -1,11 +1,5 @@
 ﻿@model LazyNews.Core.ViewModels.HeadlineViewModel
-@*@model List<LazyNews.Core.Models.NewsEntry>*@
 
-
-@*@foreach (var item in Model.)
-{
-
-}*@
 
 @foreach (var item in Model.NewsHeadlines)
 {
@@ -61,7 +55,6 @@
                 <div class="headline-container">
                     <h3><a class="anchorDetail headline-link" data-id="@item.id">@item.Headline</a></h3>
                     <button class="anchorDetail btn btn-sm btn-default modal-btn" data-id="@item.id">Full article &raquo;</button>
-                   
                 </div>
             </div>
         </div>
