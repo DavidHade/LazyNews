@@ -47,7 +47,11 @@
             jQuery("time.timeago").timeago();
         });
 
-
+        $(window).scroll(function () {
+            $(".action-bar").css("top", $(document).scrollTop() + 70).delay(5);
+        });
+        
+     
     </script>
     <script>
         function Categorize(id, category) {
@@ -66,7 +70,9 @@
                         //alert(returnValue.Headline + " " + returnValue.Id);
                         //$(".action-header").removeData();
                         //$(".action-body").removeData();
-                        $(".action-bar").css("top", $(document).scrollTop() + 70);
+                        //$(".action-bar").css("top", $(document).scrollTop() + 70);
+                        $(".action-bar").stop(true, true);
+                    
                         $(".action-header").html("Id: " + id);
                         $(".action-body").html(returnValue + "<div class='action-bar-body'>Added with category: " + category + "</div>");
                         $(".action-bar").show(200);

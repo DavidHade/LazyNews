@@ -4,21 +4,22 @@
 @foreach (var item in Model.NewsHeadlines)
 {
         <div class="col-md-12">
-            <div class="article-container">
-                <div class="pull-right h6"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>@item.NewsSource.ToUpperInvariant()</div>
+            <div class="article-container add-shadow">
+                <i class="fas fa-tag pull-right h6">@item.NewsSource.ToUpperInvariant()</i>
 
                 @if (item.TimeAdded.DayOfYear == DateTime.Now.DayOfYear)
                 {
                     <div class="h5">
-                        <span class="label label-danger">New</span><span> <time class="timeago" datetime="@item.TimeAdded.ToLongDateString()  @item.TimeAdded.ToLongTimeString()"> [time]</time></span>
+                        <span class="label label-danger">New</span><span> <time class="timeago" datetime="@item.TimeAdded.ToLongDateString()  @item.TimeAdded.ToLongTimeString()"> @item.TimeAdded.ToShortTimeString()</time></span>
                     </div>
                 }
                 else
                 {
                     <div class="h5">
-                        <time class="timeago" datetime="@item.TimeAdded.ToLongDateString() @item.TimeAdded.ToLongTimeString()">[time]</time>
+                        <time class="timeago" datetime="@item.TimeAdded.ToLongDateString() @item.TimeAdded.ToLongTimeString()">@item.TimeAdded.ToLongDateString()</time>
                     </div>
                 }
+
 
                 @if (item.Imagepath != null)
                 {
@@ -54,8 +55,20 @@
 
                 <div class="headline-container">
                     <h3><a class="anchorDetail headline-link" data-id="@item.id">@item.Headline</a></h3>
+
+
+                    @if (item.Article.Length > 1)
+                    {
+                        <div class="first-paragraph">
+                            @Html.Raw(@item.Article.Substring(item.Article.IndexOf("<p>"), item.Article.IndexOf("</p>")))
+                        </div>
+                    }
+
+
+
                     <button class="anchorDetail btn btn-sm btn-default modal-btn" data-id="@item.id">Full article &raquo;</button>
                 </div>
+
             </div>
         </div>
 }
